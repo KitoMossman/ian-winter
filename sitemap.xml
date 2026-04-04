@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<!-- Hauptseite -->
+<url>
+  <loc>https://ian-winter.com/</loc>
+  <lastmod>2025-06-27</lastmod>
+  <priority>1.00</priority>
+</url>
+<!-- Anker-Link: Über das Buch -->
+<url>
+  <loc>https://ian-winter.com/#about</loc>
+  <lastmod>2025-06-27</lastmod>
+  <priority>0.80</priority>
+</url>
+<!-- Anker-Link: Charaktere -->
+<url>
+  <loc>https://ian-winter.com/#characters</loc>
+  <lastmod>2025-06-27</lastmod>
+  <priority>0.80</priority>
+</url>
+<!-- Anker-Link: Besprechung -->
+<url>
+  <loc>https://ian-winter.com/#review</loc>
+  <lastmod>2025-06-27</lastmod>
+  <priority>0.80</priority>
+</url>
+<!-- Anker-Link: Zeitleiste -->
+<url>
+  <loc>https://ian-winter.com/#timeline</loc>
+  <lastmod>2025-06-27</lastmod>
+  <priority>0.80</priority>
+</url>
+<!-- Anker-Link: Der Autor -->
+<url>
+  <loc>https://ian-winter.com/#author</loc>
+  <lastmod>2025-06-27</lastmod>
+  <priority>0.80</priority>
+</url>
+</urlset>

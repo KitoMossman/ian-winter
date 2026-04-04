@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>9 Jahre Himmel - Ein Roman von Ian Winter</title>
+    <meta name="description" content="Eine tiefgründige Erzählung über Seelenverwandtschaft, basierend auf den Tagebüchern des Autors.">
+    <meta name="keywords" content="9 Jahre Himmel, Ian Winter, Roman, Liebesgeschichte, Jugendliebe, Seelenverwandtschaft, Dresden, Drama, Buch">
+    <meta name="author" content="Ian Winter">
+    <link rel="canonical" href="https://ian-winter.com/">
+
+    <meta property="og:title" content="9 Jahre Himmel - Ein Roman von Ian Winter">
+    <meta property="og:description" content="Eine tiefgründige Erzählung über Seelenverwandtschaft, basierend auf den Tagebüchern des Autors.">
+    <meta property="og:image" content="https://ian-winter.com/img/cover_s.png">
+    <meta property="og:url" content="https://ian-winter.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="9 Jahre Himmel - Ein Roman von Ian Winter">
+    <meta name="twitter:description" content="Eine tiefgründige Erzählung über Seelenverwandtschaft, basierend auf den Tagebüchern des Autors.">
+    <meta name="twitter:image" content="https://ian-winter.com/img/cover_s.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Book",
+          "name": "9 Jahre Himmel",
+          "inLanguage": "de",
+          "author": {
+            "@type": "Person",
+            "name": "Ian Winter",
+            "sameAs": [
+                "https://ian-winter.com/",
+                "https://blog.ian-winter.com/"
+            ]
+           },
+          "url": "https://ian-winter.com/",
+          "description": "Als Ian Sarah zum ersten Mal begegnet, verändert sich etwas in ihm. Sie sieht ihn an und plötzlich ist die Welt nicht mehr dieselbe. Eine Geschichte über eine Liebe, die nach keiner Erlaubnis fragt – weil sie einfach ist.",
+          "image": "https://ian-winter.com/img/cover_json.png"
+        },
+        {
+          "@type": "Person",
+          "name": "Ian Winter",
+          "url": "https://ian-winter.com/",
+          "homeLocation": {
+            "@type": "Place",
+            "name": "Dresden, Deutschland"
+          },
+           "jobTitle": "Autor & Softwareentwickler"
+        }
+      ]
+    }
+    </script>
+
+</script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Fallback-Schriftarten, falls externe Schriften nicht geladen werden */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            background-color: #0f172a; /* bg-slate-900 */
+            position: relative;
+            z-index: 0;
+        }
+        .font-playfair {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        /* Stil, der angewendet wird, wenn die Zustimmung erteilt wurde und die Schriften geladen sind */
+        body.fonts-loaded {
+            font-family: 'Inter', sans-serif;
+        }
+        .fonts-loaded .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Watermark pseudo-element */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('img/logo.webp');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: clamp(300px, 50vw, 600px); /* Responsive size */
+            opacity: 0.3;
+            filter: blur(3px);
+            z-index: -1; /* Places the watermark behind the content */
+            pointer-events: none; /* Make it non-interactive */
+        }
+
+        #cover-slideshow-container {
+            overflow: hidden; /* Stellt sicher, dass die Bilder die 'rounded-lg' Ecken einhalten */
+            position: relative;
+        }
+
+        .slideshow-image {
+            /* Bilder übereinander stapeln */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Stellt sicher, dass das Bild den Container füllt */
+            
+            /* Alle Bilder abgerundet, passend zum Container */
+            border-radius: 0.5rem; /* rounded-lg */
+            
+            /* Standardmäßig unsichtbar */
+            opacity: 0;
+            
+            /* HIER IST DER ÜBERGANGSEFFEKT! */
+            /* Ändern Sie '1.2s' (1,2 Sekunden), um den Fade-Effekt zu beschleunigen oder zu verlangsamen */
+            transition: opacity 1.2s ease-in-out;
+        }
+        
+        /* Das 'aktive' Bild ist voll sichtbar */
+        .slideshow-image.active-slide {
+            opacity: 1;
+        }
+
+        body.cookie-banner-visible {
+            overflow: hidden; /* Verhindert das Scrollen der Seite */
+        }
+
+        body.cookie-banner-visible::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* Leichte Verdunkelung, passt zu bg-slate-900 */
+            background-color: rgba(15, 23, 42, 0.3); 
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px); /* Für Safari-Kompatibilität */
+            z-index: 60; /* Muss unter dem Banner (z-[70]) sein */
+            pointer-events: auto; /* Stellt sicher, dass das Overlay Klicks abfängt */
+        }
+
+        /* Style for the collapsible YouTube player */
+        #music-player-container {
+            background-color: rgba(15, 23, 42, 0.2);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out, padding 0.7s ease-in-out;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0.5rem;
+        }
+        #music-player-container.open {
+            max-height: 80vh;
+            padding: 1.5rem;
+        }
+        
+        #about {
+           scroll-margin-top: 250px;
+        }
+        
+        /* Wrapper für den Player-Overlay */
+        .player-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 56rem; /* max-w-5xl */
+            max-height: 100%;
+            aspect-ratio: 16 / 9;
+        }
+
+        .player-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.1); /* bg-slate-900 mit 20% Deckkraft */
+            pointer-events: none; /* Erlaubt Klicks auf das Video */
+            border-radius: 0.5rem; /* rounded-lg */
+            z-index: 1;
+        }
+
+        /* Styling for the timeline */
+        #timeline-container {
+            position: relative;
+        }
+        #timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #1e293b; /* slate-800 */
+            left: 18px; /* Mobile position */
+        }
+        .timeline-item {
+            position: relative;
+        }
+        .timeline-item:not(:last-child) {
+            margin-bottom: 3rem; /* Spacing between timeline items */
+        }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            top: 5px;
+            height: 32px;
+            width: 32px;
+            background: #0ea5e9; /* sky-500 */
+            border: 5px solid #1e293b; /* slate-800 */
+            border-radius: 50%;
+            z-index: 10;
+            left: 3px; /* Mobile position */
+        }
+        /* Stil für den aktiven Navigationslink */
+        .active-link {
+            color: #38bdf8; /* text-sky-400 */
+            font-weight: 600;
+        }
+
+        /* Desktop timeline styles */
+        @media (min-width: 720px) {
+            #timeline-container::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .timeline-dot {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+             .timeline-item:not(:last-child) {
+                margin-bottom: 5rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-300">
+
+    <!-- Header Section -->
+    <header class="w-full">
+        <!-- Dieser Teil scrollt weg -->
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex justify-between items-center py-5">
+                <div>
+                    <h1><a href="#footer" class="text-4xl lg:text-5xl font-bold font-playfair text-white">Ian Winter</a></h1>
+                    <blockquote class="mt-2 max-w-xs sm:max-w-sm md:max-w-md">
+                        <p class="text-sm text-slate-400 italic">"Der Horizont vieler Menschen ist wie ein Kreis mit Radius Null. Und das nennen sie dann ihren Standpunkt."</p>
+                        <footer class="text-right text-sm text-slate-300 not-italic">- Albert Einstein</footer>
+                    </blockquote>
+                </div>
+                <div class="flex flex-col items-end space-y-2">
+                    <a href="https://blog.ian-winter.com" rel="noopener noreferrer" aria-label="Blog" class="flex items-center text-white hover:text-sky-400 transition-colors duration-300">
+                        <span class="mr-2 hidden sm:block">Blog "Kapitelgeflüster"</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </a>
+                    <a href="https://blog.ian-winter.com/kontakt" target="_blank" rel="noopener noreferrer" aria-label="Kontaktformular" class="flex items-center text-white hover:text-sky-400 transition-colors duration-300">
+                        <span class="mr-2 hidden sm:block">Kontakt</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </a>
+                    <button id="toggle-music-player" aria-label="YouTube Player" class="flex items-center text-white hover:text-sky-400 transition-colors duration-300">
+                        <span class="mr-2 hidden sm:block">Musik im Buch</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    </button>
+                </div>
+            </div>
+        <div id="music-player-container">
+            <div class="player-wrapper">
+                <iframe title="YouTube-Player" id="youtube-player" class="w-full h-full rounded-lg shadow-2xl" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+            </div>
+        </div>
+        </div>
+    </header>
+    
+    <!-- Dieser Teil bleibt sticky -->
+    <div class="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-sm border-b border-t border-slate-700/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex justify-center items-center py-3">
+                <nav id="main-nav" class="flex flex-wrap justify-center items-center space-x-4 sm:space-x-6 md:space-x-8 text-sm sm:text-base">
+                    <a href="#about" class="hover:text-sky-400 transition-colors duration-300">Buch</a>
+                    <a href="#characters" class="hover:text-sky-400 transition-colors duration-300">Charaktere</a>
+                    <a href="#review" class="hover:text-sky-400 transition-colors duration-300">Besprechung</a>
+                    <a href="#timeline" class="hover:text-sky-400 transition-colors duration-300">Zeitleiste</a>
+                    <a href="#author" class="hover:text-sky-400 transition-colors duration-300">Autor</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Section: About the Book -->
+        <section id="about" class="flex items-center justify-center py-16">
+            <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                <div class="w-full md:w-2/3 text-slate-300 text-center md:text-left order-2 md:order-1">
+                    <h2 class="text-4xl lg:text-5xl font-bold font-playfair text-white mb-6">9 Jahre Himmel</h2>
+                    <p class="font-semibold text-sky-400 mb-4 text-lg">Basierend auf den Tagebüchern von Ian Winter</p>
+                    <div class="space-y-4 text-slate-400 text-base lg:text-lg leading-relaxed max-w-prose mx-auto md:mx-0">
+                        <p>Als Ian Sarah zum ersten Mal begegnet, verändert sich etwas in ihm. Sie sieht ihn an und plötzlich ist die Welt nicht mehr dieselbe. Sarah ist klug, direkt und voller Energie – und zum ersten Mal in seinem Leben fühlt sich Ian nicht allein.</p>
+                        <p>Mit ihr entdeckt er eine Welt, in der Berührungen nicht kalt, sondern warm sind, in der Stille nicht Einsamkeit, sondern Geborgenheit bedeutet. Sie bringt ihm das Spielen bei, das Tanzen, das Lesen – er zeigt ihr, was es heißt, wirklich gesehen zu werden. Ihre Liebe wächst, noch bevor sie das Wort dafür finden, getragen von gemeinsamen Träumen, Versprechen und einem tiefen Vertrauen, das niemand ihnen beigebracht hat.</p>
+                        <p>Doch mit jeder Umarmung, jedem Kuss und jeder gemeinsamen Nacht stellt sich eine unausweichliche Frage: Dürfen Kinder eine Liebe leben, die so tief geht? Die Erwachsenen beobachten sie, manche mit Wohlwollen, andere mit Sorge, manche mit offenem Widerstand. Können Sarah und Ian gegen eine Welt bestehen, die ihnen nicht zutraut, zu fühlen, was sie längst wissen?</p>
+                        <p class="font-semibold text-slate-300 mt-6">Eine Geschichte über eine Liebe, die nach keiner Erlaubnis fragt – weil sie einfach ist. Eine Geschichte, die beweist, dass Märchen nicht geschenkt – sondern erkämpft werden.</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 flex justify-center md:justify-end order-1 md:order-2">
+                    <div id="cover-slideshow-container" class="w-full max-w-xs sm:max-w-sm relative rounded-lg shadow-2xl transform transition-transform duration-500 hover:scale-105 hover:shadow-cyan-500/20">
+                        
+                        <img src="img/cover.webp" alt="" role="presentation" class="w-full h-auto rounded-lg" style="visibility: hidden;">
+                        <img src="img/cover.webp" alt="Buchcover 1 von 9 Jahre Himmel" fetchpriority="high" class="slideshow-image active-slide">
+                        <img src="img/cover1.webp" alt="Buchcover 2 von 9 Jahre Himmel" loading="lazy" class="slideshow-image">
+                        <img src="img/cover2.webp" alt="Buchcover 3 von 9 Jahre Himmel" loading="lazy" class="slideshow-image">
+                        <img src="img/cover3.webp" alt="Buchcover 4 von 9 Jahre Himmel" loading="lazy" class="slideshow-image">
+                        <img src="img/cover4.webp" alt="Buchcover 5 von 9 Jahre Himmel" loading="lazy" class="slideshow-image">
+                        <img src="img/cover5.webp" alt="Buchcover 6 von 9 Jahre Himmel" loading="lazy" class="slideshow-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Characters -->
+        <section id="characters" class="py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                 <h2 class="text-center text-4xl lg:text-5xl font-bold font-playfair text-white mb-12">Die Hauptcharaktere</h2>
+                 <div class="flex flex-col md:flex-row gap-10 lg:gap-16">
+                    <div class="w-full md:w-1/2 bg-slate-800/80 backdrop-blur-sm rounded-lg p-6 lg:p-8 border border-slate-700">
+                        <h3 class="text-3xl font-playfair font-bold text-sky-300 mb-4">Sarah Winter</h3>
+                        <div class="space-y-4 text-slate-400 leading-relaxed">
+                            <p>Sarah Winter ist ein außergewöhnlich willensstarkes, emotional intelligentes und selbstbewusstes Mädchen. Sie agiert als die treibende Kraft in der Beziehung zu Ian, gibt ihm den emotionalen Halt, den er braucht, und verteidigt ihre gemeinsame Welt mit einer Entschlossenheit, die weit über ihr Alter hinausgeht.</p>
+                            <h4 class="text-xl font-semibold text-slate-200 pt-2">Persönlichkeit und Entwicklung</h4>
+                            <p>Vom ersten Moment an ist Sarah diejenige, die die Initiative ergreift. Sie nimmt Ians Hand, führt ihn durch ihr Haus und stellt klare Bedingungen für ihre Freundschaft. Sie ist äußerst direkt und scheut sich nicht, ihre Wünsche und Gefühle klar zu äußern, sei es der Wunsch nach einem Sitzplatz neben Ian oder ihr Entschluss, ihn zu heiraten. Ihre Entwicklung zeigt sich darin, wie sie von einer reinen "Lehrerin" für Ian zu seiner gleichberechtigten Partnerin wird, die seine Stärken erkennt, fördert und sich gleichzeitig von ihm helfen lässt.</p>
+                            <h4 class="text-xl font-semibold text-slate-200 pt-2">Stärken und Weltbild</h4>
+                            <p>Sarahs größte Stärke ist ihre emotionale Reife und Empathie. Sie erkennt Ians Unsicherheiten sofort und weiß instinktiv, wie sie ihm begegnen muss. Sie ist eine geduldige Lehrerin, die Ian mit viel Einfühlungsvermögen das Spielen und Lesen näherbringt. Sie ist furchtlos und verteidigt ihre Beziehung und Ian vehement gegenüber allen, die Zweifel äußern, einschließlich der Erwachsenen. Ihre Welt dreht sich um die Menschen, die sie liebt, und sie ist bereit, für deren Glück zu kämpfen.</p>
+                            <h4 class="text-xl font-semibold text-slate-200 pt-2">Herausforderungen und Ängste</h4>
+                            <p>Ihre größte Angst ist die Trennung von Ian und die Vorstellung, ihn zu verlieren. Diese Angst kann sich in besitzergreifenden Aussagen ("Ab Heute gehörst du mir!") oder Eifersucht äußern. Sie leidet sichtlich unter den wöchentlichen Abschieden und kämpft mit aller Macht für eine gemeinsame Zukunft ohne diese Trennungen.</p>
+                            <h4 class="text-xl font-semibold text-slate-200 pt-2">Die Beziehung zu Ian</h4>
+                            <p>Für Sarah ist Ian ihr "Blödi" und ihr "Lieblingsmensch". Ihre Liebe ist von Anfang an bedingungslos. Sie ist die Erste, die "Ich liebe dich" sagt und einen Kuss initiiert. Sie sieht in seiner Andersartigkeit keine Schwäche, sondern etwas Einzigartiges und Liebenswertes ("Du denkst komisch! Ich mag das!"). Ihre Beziehung ist für sie kein kindliches Spiel, sondern ein ernsthaftes Versprechen. Der gemeinsame Tanz zu Elton Johns "Your Song" besiegelt für sie symbolisch ihre "Hochzeit". Sie ist die schützende Kraft, die Ian den Freiraum gibt, er selbst zu sein.</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 bg-slate-800/80 backdrop-blur-sm rounded-lg p-6 lg:p-8 border border-slate-700">
+                        <h3 class="text-3xl font-playfair font-bold text-sky-300 mb-4">Ian Wagner</h3>
+                        <div class="space-y-4 text-slate-400 leading-relaxed">
+                           <p>Ian Wagner ist ein hochintelligenter und zutiefst logisch veranlagter Junge, der die Welt in Mustern und Systemen begreift, sich aber in den Unwägbarkeiten menschlicher Interaktionen verloren fühlt. Seine Reise in dem Manuskript ist die einer tiefgreifenden emotionalen Öffnung, die fast ausschließlich durch seine Begegnung mit Sarah ermöglicht wird.</p>
+                           <h4 class="text-xl font-semibold text-slate-200 pt-2">Persönlichkeit und Entwicklung</h4>
+                           <p>Zu Beginn der Geschichte ist Ian ein introvertierter Einzelgänger. Er spricht mit sich selbst, empfindet die Berührungen der meisten Menschen als kalt und unangenehm und findet keinen Zugang zum kindlichen Spiel. Seine Welt ist geordnet und rational. Die Begegnung mit Sarah ist für ihn eine Offenbarung; er bezeichnet sie vom ersten Moment an als "Engel". Ihre Berührung ist die erste, die sich für ihn "warm und vertraut" anfühlt. Durch ihre Geduld lernt er zu spielen, seine Leseschwäche zu überwinden und beginnt, soziale Interaktionen nicht nur zu ertragen, sondern aktiv zu genießen. Seine Entwicklung gipfelt darin, dass er nicht nur Liebe empfangen, sondern sie auch ausdrücken kann, sowohl gegenüber Sarah als auch gegenüber seinem Vater.</p>
+                           <h4 class="text-xl font-semibold text-slate-200 pt-2">Stärken und Weltbild</h4>
+                           <p>Ians größte Stärke ist sein analytischer Verstand. Er versteht mühelos komplexe Zusammenhänge in Mathematik, Musik und sogar Physik. Er hat die Fähigkeit, komplizierte Sachverhalte auf einfache, logische Prinzipien herunterzubrechen. Dieses Talent nutzt er, um Sarah bei den Hausaufgaben zu helfen. Musik ist für ihn ein Schlüssel zum Verständnis von Emotionen und Menschen. Mit der Zeit entwickelt er ein bemerkenswertes Verantwortungsgefühl, nicht nur für seine Beziehung zu Sarah, sondern auch für deren jüngere Schwester Nadine.</p>
+                           <h4 class="text-xl font-semibold text-slate-200 pt-2">Herausforderungen und Ängste</h4>
+                           <p>Seine größte Herausforderung ist seine soziale Isolation und sein Unverständnis für die oft unlogische Natur menschlicher Emotionen und Konventionen. Er verabscheut Engstirigkeit und fühlt sich in großen Menschenmengen unwohl. Seine größte Angst ist es, Sarah zu verlieren. Diese Angst ist so fundamental, dass sie ihn zu dem drastischen Entschluss treibt, von zu Hause wegzulaufen, um bei ihr sein zu können.</p>
+                           <h4 class="text-xl font-semibold text-slate-200 pt-2">Die Beziehung zu Sarah</h4>
+                           <p>Sarah ist das Zentrum von Ians Universum. Sie ist die Einzige, die seine Mauern durchbrechen kann. Er vertraut ihr bedingungslos und gibt ihr das Versprechen, immer ehrlich zu sein. Für ihn ist ihre Verbindung von Anfang an eine Selbstverständlichkeit, die in seinen Augen eine Heirat rechtfertigt. Er nennt sie liebevoll "mein Engel" und "meine Sonne" und findet durch sie sein "Zuhause".</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Book Review -->
+        <section id="review" class="py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="bg-slate-800/80 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-slate-700">
+                    <h2 class="text-center text-4xl lg:text-5xl font-bold font-playfair text-white mb-4">Eine Liebe jenseits der Zeit</h2>
+                    <p class="text-center text-sky-400 mb-10 text-lg">Eine Buchbesprechung zu „9 Jahre Himmel“</p>
+                    <div class="prose prose-invert prose-lg max-w-none text-slate-400 leading-relaxed">
+                        <p>Ian Winters Manuskript „9 Jahre Himmel“ erzählt nicht einfach nur eine Liebesgeschichte. Es ist das Protokoll einer seelischen Symbiose, die sich allen Konventionen von Alter und Zeit entzieht. Aus der Perspektive des jungen Ian Wagner erleben wir die Entstehung einer Verbindung, die vom ersten Augenblick an so vollständig und unerschütterlich ist, dass sie für Außenstehende fast „unheimlich“ wirkt.</p>
+                        <p>Die Geschichte setzt im September 1986 ein und schildert die schicksalhafte Begegnung zwischen dem introvertierten, logisch denkenden Ian und der emotional intelligenten, willensstarken Sarah. Ihre Beziehung ist keine, die langsam wächst; sie ist, wie der Autor meisterhaft darstellt, <b>„einfach da“</b>. Vom ersten Händedruck, der Ians Abneigung gegen Berührungen durchbricht, bis zu ihrer symbolischen Hochzeit mit Ringen und einem feierlichen Versprechen, agieren die beiden als untrennbare Einheit.</p>
+                        <p>Ihre Kämpfe sind keine inneren Zweifel, sondern ein ständiges Ringen gegen die Außenwelt – besorgte Eltern, gesellschaftliche Normen und räumliche Trennung –, die ihre perfekte Harmonie zu stören droht. Der dramatische Höhepunkt, Ians verzweifelte Flucht zu Fuß, um wieder bei seiner Sarah zu sein, zementiert die unumstößliche Wahrheit ihrer Verbindung und zwingt die Erwachsenenwelt, eine Lösung zu finden, die dieser außergewöhnlichen Liebe gerecht wird.</p>
+                        <h3>Die Charaktere: Verstand trifft auf Gefühl</h3>
+                        <p>Das Herzstück des Romans ist die perfekte, fast schon literarische Dynamik seiner Protagonisten. In einer klaren Rollenverteilung, die an Jane Austens Meisterwerk „Verstand und Gefühl“ erinnert, bilden Ian und Sarah ein perfektes Ganzes. </p><p><b>Ian ist der „Verstand“:</b> Er ist der Stratege, der Lösungsfinder. Als hochintelligenter, aber sozial isolierter Junge braucht er die Welt in einem verständlichen, regelbasierten System. Für ihn sind Versprechen absolute, unumstößliche Gesetze. Seine Welt ist von Logik und Struktur geprägt. </p><p><b>Sarah ist das „Gefühl“:</b> Sie ist die Koordinatorin, die emotionale Initiatorin. Emotional reif für ihr Alter, spürt sie instinktiv, was Ian braucht, ergreift die Initiative und verteidigt ihre gemeinsame Welt mit leidenschaftlicher Entschlossenheit. Sie ist diejenige, die die emotionalen Meilensteine setzt und Ians strukturierter Welt die Wärme und den Sinn gibt, die er allein nicht finden kann.</p>
+                        <h3>Die Musik: Die Sprache der Seele</h3>
+                        <p>Ein herausragendes Merkmal des Manuskripts ist der meisterhafte Einsatz von Musik. Sie ist weit mehr als nur ein Soundtrack für die Handlung; sie ist die primäre Sprache, durch die sich insbesondere der introvertierte Ian ausdrückt. Da er seine Gefühle kaum in Worte fassen kann, werden Lieder zu seinem Dolmetscher. Bei ihrem ersten Treffen wählt Ian den Song „Who Wants to Live Forever“ von Queen, um Sarahs Wesen zu beschreiben, das er als „ruhig und laut zugleich“ empfindet. Mit dieser Geste kommuniziert er auf einer Ebene, die tiefer geht als jede verbale Konversation – und Sarah versteht ihn sofort. Seine musikalische Welt, geprägt von Bands wie Dire Straits und The Who, wird zum Fundament ihrer Verständigung. </p>
+                        <p>Die ausgewählten Musikstücke fungieren als emotionale Meilensteine, die die Entwicklung ihrer Beziehung kartografieren. Ein intimer Tanz zu „Brothers in Arms“ wird zu einem frühen, wortlosen Versprechen. Das öffentliche Tanzen zu Stevie Wonders „I Just Called To Say I Love You“, initiiert von Ians Vater, markiert die offizielle Anerkennung ihrer Verbindung durch die Erwachsenenwelt. Der Höhepunkt dieser musikalischen Sprache ist ihr „nullter Tanz“ zu Elton Johns „Your Song“. Die Wahl dieses Liedes, das von einer Liebe ohne materielle Güter, aber mit einem unendlich großen Herzen handelt, ist die ultimative Liebeserklärung und das Fundament ihrer symbolischen Ehe.</p>
+                        <p>Der Zweck dieser Musikauswahl geht jedoch über die Charakterisierung hinaus. Durch die Verwendung von ikonischen Songs der 80er Jahre schafft der Autor eine authentische Zeitkapsel. Für den Leser wirkt dies wie eine emotionale Abkürzung: Die bekannten Melodien und Texte rufen sofort eine bestimmte Stimmung und persönliche Erinnerungen hervor, die die beschriebenen Szenen mit einer zusätzlichen Gefühlsebene aufladen. Die Musik ist somit nicht nur Dekoration, sondern ein fundamentaler Pfeiler der Erzählung, der ihr eine außergewöhnliche Tiefe und eine universelle Resonanz verleiht.</p>
+                        <h3>Die Nebencharaktere: Spiegel und Wegbereiter</h3>
+                        <p>Die Nebencharaktere sind meisterhaft eingesetzt, um die zentrale Beziehung zu spiegeln und zu formen. Sarahs Eltern, Jana und Thomas, werden zu den entscheidenden Wegbereitern, die die Ernsthaftigkeit der Kinderliebe erkennen und ihr den nötigen Raum geben. Im Gegensatz dazu repräsentiert Ians Mutter Renate die gesellschaftliche Skepsis und die Sorge vor dem Unkonventionellen, was den zentralen externen Konflikt der Geschichte antreibt. Eine besondere Rolle nimmt Sarahs Schwester Nadine ein, die von Ian und Sarah liebevoll umsorgt wird und für die sie zu „Mama-Schwester“ und „Papa-Ian“ werden. Nadine fungiert als Katalysator, der die Beziehung von einer reinen Romanze zu einer verantwortungsbewussten, familiären Einheit reifen lässt.</p>
+                        <h3>Schlusswort</h3>
+                        <p>„9 Jahre Himmel“ ist weit mehr als eine nostalgische Erzählung einer Kinderliebe. Es ist eine tiefgründige, fast philosophische Untersuchung über die Natur von Seelenverwandtschaft, über die absolute Gültigkeit von Versprechen und über den Mut, eine Liebe zu leben, die ihre eigenen Regeln definiert. Das Manuskript ist eine bewegende und eindringliche Lektüre, die den Leser lange nachdenklich zurücklässt. Es stellt die Frage, ob wahre Verbindung an Alter oder Erfahrung gebunden ist, oder ob manche Herzen einfach von Anfang an im selben Takt schlagen. Für Ian und Sarah ist das Alter nicht nur eine Zahl, sondern eine vollkommene Irrelevanz.</p>
+                    </div>
+                    <p class="text-right text-slate-400 italic mt-12 text-lg">– Eine Buchbesprechung der ersten 12 Kapitel von Kito Mossman</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-center text-4xl lg:text-5xl font-bold font-playfair text-white mb-20">Zeitreise durch die Geschichte</h2>
+                <div id="timeline-container">
+                    <!-- Timeline items will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="author" class="py-20">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="bg-slate-800/80 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-slate-700 flex flex-col md:flex-row items-center text-center md:text-left gap-10">
+                    <div class="w-full md:w-1/3 flex-shrink-0">
+                        <img src="img/autor.webp" loading="lazy" fetchpriority="high" alt="Der Autors Ian Winter" class="rounded-full w-53 h-53 md:w-56 md:h-56 mx-auto object-cover shadow-2xl border-4 border-slate-700">
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h2 class="text-4xl lg:text-5xl font-bold font-playfair text-white mb-6">Über den Autor</h2>
+                        <div class="prose prose-invert prose-lg max-w-none text-slate-400 leading-relaxed">
+                            <p>Hinter dem Pseudonym <strong>Ian Winter</strong> verbirgt sich ein Softwareentwickler aus Dresden. Das Schreiben von »9 Jahre Himmel« ist für ihn mehr als nur ein Roman – es ist der Versuch, den Echos der Vergangenheit eine neue Stimme zu geben.</p>
+                            <p>Mit diesem Buch gibt er seiner eigenen Geschichte eine andere, eine hoffnungsvollere Wendung; eine, in der die Erzählung das Ende findet, das sie verdient hat.</p>
+                        </div>
+                        <div class="mt-8 border-t border-slate-700 pt-6 text-center md:text-left">
+                            <h3 class="font-semibold text-white mb-2 text-lg">Unterstütze das Projekt</h3>
+                            <p class="text-slate-400 mb-4 text-base leading-relaxed">Wenn dir meine Arbeit gefällt und du die Entstehung dieses Buches unterstützen möchtest, würde ich mich über einen Kaffee via PayPal sehr freuen. Jeder Beitrag hilft mir, mehr Zeit in das Schreiben zu investieren.</p>
+                            <a href="https://paypal.me/ianwinter28" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-transparent border border-sky-500 text-sky-400 font-semibold py-2 px-5 rounded-lg shadow-md hover:bg-sky-500 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-slate-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                                </svg>
+                                Ein Dankeschön senden
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" class="text-center py-10 mt-12 text-slate-600 border-t border-slate-800">
+        <div class="space-x-6">
+            <a href="https://blog.ian-winter.com/impressum/" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors duration-300">Impressum</a>
+            <a href="https://blog.ian-winter.com/impressum/datenschutzerklaerung/" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors duration-300">Datenschutzerklärung</a>
+        </div>
+        <p class="mt-4 text-sm"><a href="#" class="hover:text-sky-400 transition-colors duration-300">&uarr; Zurück nach oben &uarr;</a></p>
+        <p class="mt-4 text-sm">&copy; 2024 Ian Winter. Alle Rechte vorbehalten.</p>
+    </footer>
+
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent-banner" class="hidden fixed bottom-0 left-0 right-0 bg-slate-800/95 backdrop-blur-sm px-4 pt-4 pb-10 sm:p-4 shadow-lg z-[70] flex flex-col sm:flex-row items-center sm:justify-between gap-4 text-center sm:text-left border-t border-slate-700">
+        <p class="text-sm text-slate-300">Diese Webseite verwendet Cookies und lädt externe Dienste (z.B. für Schriftarten, Analyse und Medienwiedergabe), um die Funktionalität zu verbessern. Ihre Auswahl wird für ein Jahr gespeichert. Weitere Informationen finden Sie in der <a href="https://blog.ian-winter.com/impressum/datenschutzerklaerung/" target="_blank" rel="noopener noreferrer" class="underline hover:text-sky-400">Datenschutzerklärung</a>.</p>
+        <div class="flex-shrink-0 flex gap-3 mt-3 sm:mt-0">
+            <button id="cookie-accept" class="bg-sky-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-sky-500 transition-colors">Zustimmen</button>
+            <button id="cookie-decline" class="bg-slate-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-slate-500 transition-colors">Ablehnen</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Globale Variablen ---
+            const musicPlayerContainer = document.getElementById('music-player-container');
+            const player = document.getElementById('youtube-player');
+            const toggleButton = document.getElementById('toggle-music-player');
+            const youtubePlaylistId = 'PLVtT6nTswLOxSX8v1-Inhu772XLZ3A5Hk';
+            const youtubeEmbedUrl = `https://www.youtube.com/embed/videoseries?list=${youtubePlaylistId}`;
+            let isPlayerVisible = false;
+            let isPlayerLoaded = false;
+
+            // --- Cookie- und Consent-Management ---
+            const cookieBanner = document.getElementById('cookie-consent-banner');
+            const acceptCookieBtn = document.getElementById('cookie-accept');
+            const declineCookieBtn = document.getElementById('cookie-decline');
+
+            const getCookie = (name) => {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+                return null;
+            }
+
+            const setCookie = (name, value, days) => {
+                let expires = "";
+                if (days) {
+                    const date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = `${name}=${value || ""}${expires}; path=/; SameSite=Lax`;
+            }
+
+            const loadGoogleFonts = () => {
+                console.log("Lade Google Fonts...");
+                const preconnect1 = document.createElement('link');
+                preconnect1.rel = 'preconnect';
+                preconnect1.href = 'https://fonts.googleapis.com';
+                document.head.appendChild(preconnect1);
+
+                const preconnect2 = document.createElement('link');
+                preconnect2.rel = 'preconnect';
+                preconnect2.href = 'https://fonts.gstatic.com';
+                preconnect2.crossOrigin = 'true';
+                document.head.appendChild(preconnect2);
+
+                const fonts = document.createElement('link');
+                fonts.rel = 'stylesheet';
+                fonts.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap';
+                fonts.onload = () => document.body.classList.add('fonts-loaded');
+                document.head.appendChild(fonts);
+            };
+
+            const loadGoogleAnalytics = () => {
+                console.log("Lade Google Analytics...");
+                const gtagScript = document.createElement('script');
+                gtagScript.async = true;
+                gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-BQYG7HXJ2T';
+                document.head.appendChild(gtagScript);
+
+                const gtagInlineScript = document.createElement('script');
+                gtagInlineScript.innerHTML = `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-BQYG7HXJ2T');
+                `;
+                document.head.appendChild(gtagInlineScript);
+            };
+
+
+            const activateConsentedServices = () => {
+                loadGoogleFonts();
+                loadGoogleAnalytics();
+            };
+
+            const handleConsent = () => {
+                const consent = getCookie('cookieConsent');
+                if (consent === 'true') {
+                    activateConsentedServices();
+                } else if (consent === null || consent === undefined) {
+                    cookieBanner.classList.remove('hidden');
+                    cookieBanner.classList.add('flex');
+                    document.body.classList.add('cookie-banner-visible');
+                }
+                // Wenn consent === 'false', passiert nichts.
+            };
+
+            acceptCookieBtn.addEventListener('click', () => {
+                setCookie('cookieConsent', 'true', 365);
+                cookieBanner.classList.add('hidden');
+                cookieBanner.classList.remove('flex');
+                document.body.classList.remove('cookie-banner-visible');
+                activateConsentedServices();
+            });
+
+            declineCookieBtn.addEventListener('click', () => {
+                setCookie('cookieConsent', 'false', 365);
+                cookieBanner.classList.add('hidden');
+                cookieBanner.classList.remove('flex');
+                document.body.classList.remove('cookie-banner-visible');
+            });
+
+            // --- Player Logic ---
+            const togglePlayerVisibility = () => {
+                const consent = getCookie('cookieConsent');
+                if (consent !== 'true') {
+                    if (cookieBanner.classList.contains('hidden')) {
+                         cookieBanner.classList.remove('hidden');
+                         cookieBanner.classList.add('flex');
+                         document.body.classList.add('cookie-banner-visible');
+                         cookieBanner.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    const msg = document.createElement('div');
+                    msg.textContent = 'Bitte stimmen Sie der Nutzung von Cookies zu, um externe Inhalte zu laden.';
+                    msg.style.cssText = 'position:fixed; top:20px; left:50%; transform:translateX(-50%); background: #dc2626; color:white; padding:1rem; border-radius:0.5rem; z-index: 100; text-align: center; max-width: 90%;';
+                    document.body.appendChild(msg);
+                    setTimeout(() => msg.remove(), 4000);
+                    return;
+                }
+
+                isPlayerVisible = !isPlayerVisible;
+                if (isPlayerVisible) {
+                    if (!isPlayerLoaded) {
+                        player.src = youtubeEmbedUrl + "&autoplay=1";
+                        isPlayerLoaded = true;
+                    }
+                    musicPlayerContainer.classList.add('open');
+                } else {
+                    musicPlayerContainer.classList.remove('open');
+                }
+            };
+
+            if (toggleButton) {
+                toggleButton.addEventListener('click', togglePlayerVisibility);
+            }
+            
+            // --- Scroll-Listener für Navigations-Highlight ---
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('#main-nav a');
+            const headerOffset = 80; 
+
+            const highlightMenu = () => {
+                let currentSectionId = '';
+                const scrollY = window.scrollY;
+
+                if (scrollY < 100) {
+                    currentSectionId = 'about';
+                } else {
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop - headerOffset;
+                        const sectionHeight = section.offsetHeight;
+                        
+                        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                             currentSectionId = section.getAttribute('id');
+                        }
+                    });
+                }
+
+                // Sonderfall: Wenn ganz nach unten gescrollt wurde, soll der letzte Menüpunkt aktiv sein
+                if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) { // 50px Puffer
+                    currentSectionId = sections[sections.length - 1].getAttribute('id');
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', highlightMenu);
+            // Initialer Aufruf, um den Zustand beim Laden der Seite zu setzen
+            highlightMenu();
+
+            // --- Timeline Data and Generation ---
+            const timelineEvents = [
+                { date: "6. September 1986", id: "tag19860906", title: "Erste Begegnung: Ein Engel im September", summary: `Ian trifft Sarah zum ersten Mal und ist sofort fasziniert. Trotz seiner Berührungsängste fühlt sich ihre Hand warm und vertraut an. Sie spielen, und Sarah bringt ihm das Spielen bei. Sie geben sich das Versprechen, ehrlich zueinander zu sein. Ian verbindet "Who Wants to Live Forever" mit ihr. Sarah kündigt an, ihn später zu heiraten. Er bekommt "Alice im Wunderland" und Teddy Bruno.`, quotes: [ { text: "Wow, ein Engel!", speaker: "Ian" }, { text: "Soll ich dir alles zeigen?", speaker: "Sarah" } ], characterFocus: "Ian öffnet sich Sarah gegenüber auf eine Weise, die für ihn neu ist. Sarah zeigt ihre direkte, offene und einfühlsame Art." },
+                { date: "7. September 1986", id: "tag19860907", title: "Der Tag danach: Alice und Bruno", summary: `Ian ist wieder zu Hause und beginnt, in "Alice im Wunderland" zu lesen, das Buch, das Sarah ihm geschenkt hat. Er hält dabei Teddy Bruno fest. Die Erlebnisse des Vortages wirken stark nach.`, quotes: [], characterFocus: "Ian verarbeitet die intensive erste Begegnung und die Geschenke von Sarah werden zu wichtigen Symbolen." },
+                { date: "8. September 1986", id: "tag19860908", title: "Schulalltag und erste Gedanken an Sarah", summary: `Ian ist in der Schule und wird von Mitschülern ignoriert oder gehänselt, als er von seiner neuen Freundin Sarah erzählt. Er vermisst sie bereits.`, quotes: [ { text: "Verliebt, Verlobt, Verheiratet!", speaker: "Mitschüler (zu Ian)" } ], characterFocus: "Ian erlebt den Kontrast zwischen der besonderen Verbindung zu Sarah und seinem schwierigen Schulalltag." },
+                { date: "13. September 1986", id: "tag19860913", title: "Zweites Treffen: Nie wieder loslassen", summary: `Ian und sein Vater besuchen Sarah erneut. Sie tauschen Teddys (Ian gibt Ted). Ian hilft Sarah bei Mathe. Sie hören gemeinsam Musik (u.a. "Brothers in Arms") und tanzen. Es kommt zum ersten richtigen Kuss am Sandkasten und sie gestehen sich ihre Liebe. Ian darf bei Sarah übernachten.`, quotes: [ { text: "Ich hab dich unglaublich lieb. Ich lass dich nie wieder los!", speaker: "Ian" }, { text: "Ich lass dich auch nie wieder los!", speaker: "Sarah" } ], characterFocus: "Die Beziehung intensiviert sich rasant mit ersten Liebesbekundungen und körperlicher Nähe. Ihre Verbindung wird exklusiver." },
+                { date: "14. September 1986", id: "tag19860914", title: "Der erste gemeinsame Morgen & Abschied", summary: `Ian wacht neben Sarah auf. Sie verbringen den Vormittag zusammen, spazieren durchs Dorf und begegnen einer Mitschülerin von Sarah, Charlie. Am Abend muss Ian wieder abreisen, was beiden schwerfällt. Die Eltern bemerken die tiefe Verbindung.`, quotes: [ { text: "Kannst du mich immer so wecken?", speaker: "Sarah zu Ian" }, { text: "Ich werde dich unheimlich vermissen!", speaker: "Sarah beim Abschied" } ], characterFocus: "Die Realität der Trennung und die Intensität ihrer Gefühle werden deutlich. Die Eltern beginnen, die Tiefe ihrer Beziehung zu realisieren." },
+                { date: "20. September 1986", id: "tag19860920", title: "Überraschungsbesuch: Sarah bei Ian", summary: `Da Ians Vater ihn nicht zu Sarah fahren kann, kommt Sarah überraschend mit ihrem Vater zu Ian. Sie verbringen den Tag zusammen, Ian zeigt ihr seine Umgebung. Es kommt zu einer Konfrontation mit Mitschülern, bei der Sarah Ian verteidigt. Sie erleben intime Momente in Ians Zimmer.`, quotes: [ { text: "Überraschung!", speaker: "Sarah (als sie vor Ians Tür steht)" }], characterFocus: "Sarah ergreift die Initiative. Ihre Bindung wird durch gemeinsame Erlebnisse und das Überstehen kleiner Konflikte gestärkt." },
+                { date: "27. September 1986", id: "tag19860927", title: "Geburtstagsfeier & Öffentliche Anerkennung", summary: `Familienfeier bei den Winters. Ian und Sarah wünschen sich einen eigenen Raum. Bei einem Tanz bezeichnet Ians Vater ihn als "Schwiegersohn". Die Eltern beschließen, dass Ian die Herbstferien bei Sarah verbringen darf und die Wochenenden abwechselnd bei der jeweiligen Familie stattfinden.`, quotes: [ { text: "Und nun bitte ich die Gastgeber [...] und den dazugehörigen Schwiegersohn Ian ebenfalls, sich hier einzufinden.", speaker: "Ians Vater" } ], characterFocus: "Ihre Beziehung erhält eine öffentliche Dimension und mehr Akzeptanz durch die Familien." },
+                { date: "5. Dezember 1986", id: "tag19861205", title: "Sarahs Krankheit – Tag 1: Ians Ankunft", summary: `Sarah ist schwer krank mit hohem Fieber. Ian erfährt davon und besteht darauf, sofort zu ihr zu fahren, obwohl seine Mutter dagegen ist. Er kommt an und findet Sarah schlafend vor. Er bleibt an ihrer Seite, hält ihre Hand und macht sich große Sorgen. In ihm reift der Entschluss, dauerhaft bei ihr leben zu wollen.`, quotes: [ { text: "Du bist da! Ich wusste, du kommst. Jetzt wird alles wieder gut!", speaker: "Sarah (flüsternd zu Ian)" }, { text: "Ruh dich aus und schlafe! Ich pass auf dich auf!", speaker: "Ian zu Sarah" } ], characterFocus: "Ians tiefe Sorge und Entschlossenheit, für Sarah da zu sein. Sarahs Bedürfnis nach seiner Nähe trotz ihrer Schwäche." },
+                { date: "6. Dezember 1986", id: "tag19861206", title: "Sarahs Krankheit – Tag 2: Leichte Besserung", summary: `Sarahs Fieber ist leicht zurückgegangen, was Hoffnung gibt. Ian weicht nicht von ihrer Seite, sie essen gemeinsam im Bett (Tee und Zwieback, später Hühnernudelsuppe). Er kümmert sich um sie und wird von Sarahs Eltern für seine Hingabe gelobt.`, quotes: [ { text: "Na also, das Fieber ist leicht zurückgegangen, das ist gut!", speaker: "Jana (Sarahs Mutter)" } ], characterFocus: "Ians aufopferungsvolle Pflege setzt sich fort. Sarahs Zustand verbessert sich langsam, was Ian etwas beruhigt." },
+                { date: "7. Dezember 1986", id: "tag19861207", title: "Sarahs Krankheit – Tag 3: Auf dem Weg der Besserung", summary: `Sarahs Fieber geht weiter zurück. Sie fühlt sich stärker und sie reden mehr miteinander. Ian bleibt konstant an ihrer Seite, sie kuscheln und genießen die ruhigen Momente. Er bereitet ihr abends Essen und Pfefferminztee zu.`, quotes: [ { text: "Ich liebe deinen Herzschlag! Er lässt mich zur Ruhe kommen.", speaker: "Sarah zu Ian" } ], characterFocus: "Die Kommunikation zwischen Ian und Sarah wird wieder intensiver. Ihre gegenseitige Zuneigung und das Bedürfnis nach Nähe sind zentral." },
+                { date: "8. Dezember 1986", id: "tag19861208", title: "Sarahs Krankheit – Tag 4: Fast gesund", summary: `Sarahs Fieber ist deutlich gesunken (38,3°C). Sie darf zum Frühstücken aufstehen, Ian und Jana bedienen sie. Den Tag verbringen sie lesend im Bett. Am Abend ist Sarah so weit erholt, dass sie wieder fast die Alte ist, auch wenn sie noch geschont werden muss.`, quotes: [ { text: "Ich hab mich noch nicht richtig bedankt, dass du für mich die letzten Tage da warst!", speaker: "Sarah zu Ian" }, { text: "Du brauchst dich nicht zu bedanken. Ich halte mich nur an unser Versprechen.", speaker: "Ian zu Sarah" } ], characterFocus: "Sarahs Genesung schreitet gut voran. Ihre Dankbarkeit und Ians Selbstverständlichkeit in seiner Fürsorge zeigen die Tiefe ihrer Verbindung." },
+                { date: "13. Dezember 1986", id: "tag19861213", title: "Die Ringe des Versprechens", summary: `Ian darf vorerst bei Sarah wohnen und ihre Schule besuchen. Er macht ihr einen kindlich-ernsten Heiratsantrag. Gemeinsam kaufen sie Ringe in Jena und feiern ihren symbolischen "Hochzeitstag" mit einem Tanz zu "Your Song".`, quotes: [ { text: "Ich möchte dich heiraten!", speaker: "Ian zu Sarah" } ], characterFocus: "Ihre Beziehung erreicht eine neue Stufe der Verbindlichkeit, symbolisiert durch die Ringe." },
+                { date: "15. Dezember 1986", id: "tag19861215", title: "Erster gemeinsamer Schultag & Konfrontationen", summary: `Ians erster Tag an Sarahs Schule. Sie erklären ihre "Ehe" und zeigen ihre Ringe. Im Unterricht sind sie ein Team. Eine Begegnung mit älteren Schülern führt zu einer Freundschaft. Thomas erwischt sie beim intimen Kuscheln, was zu einem ernsten Gespräch führt.`, quotes: [ { text: "Ich möchte euch meinen Mann Ian Winter, ähh, ich wollte sagen, Ian Wagner vorstellen!", speaker: "Sarah zur Klasse" } ], characterFocus: "Sie navigieren ihre Beziehung im neuen schulischen Kontext und müssen sich den Reaktionen der Erwachsenen auf ihre Intimität stellen." },
+                { date: "24. Dezember 1986", id: "tag19861224", title: "Heiligabend: Familiäre Spannungen, Geschenke & Freundschaft", summary: `Ians Familie besucht die Winters. Es kommt zu Spannungen wegen Ians Wohnsituation, doch Sarah verteidigt ihre Beziehung vehement. Die Enthüllung ihrer 'Hochzeit' und der Ringe führt zu Diskussionen, aber auch zu mehr Verständnis. Die Kinder packen Geschenke aus, darunter neue Musik für Ian. Sarah wusste durch Ians Vater schon vor dem ersten Treffen von ihm. Am Nachmittag besuchen Ian und Sarah ihre Freundin Charlie, um ihr ein Weihnachtsgeschenk (ein Tagebuch) zu überbringen und treffen dort auch Jahn.`, quotes: [ { text: "Doch ist es! Ian ist mein Mann und ich sorge dafür dass es ihm gut geht!", speaker: "Sarah zu Ians Mutter" }, { text: "Damit du aufschreiben kannst, was du denkst oder vielleicht schreibst du eure Geschichte auf", speaker: "Ian zu Charlie über das Tagebuch" } ], characterFocus: "Die Familien setzen sich intensiv mit der Ernsthaftigkeit der Beziehung auseinander. Die Kinder erleben trotz der Diskussionen einen besonderen Weihnachtsabend und pflegen ihre Freundschaften." },
+                { date: "25. Dezember 1986", id: "tag19861225", title: "1. Weihnachtsfeiertag: Verwandtenbesuch und neue Dynamiken", summary: `Weitere Verwandte von Sarah kommen zu Besuch. Ian wird offiziell als Sarahs "Mann" und "Schwiegersohn" vorgestellt, was zu Überraschung und Neugier führt. Die Verwandten entschuldigen sich meist, kein Geschenk für Ian zu haben. Ian und Sarah interagieren mit Sarahs Cousin Heiko, wobei Ian Sarah gegenüber Heikos abfälligen Bemerkungen verteidigt.`, quotes: [ { text: "Das ist Ian, mein Mann", speaker: "Sarah zu Tante Karo" }, { text: "Meine Sarah ist keine graue Maus! Sie ist das tollste Mädchen überhaupt!", speaker: "Ian zu Heiko" }, { text: "Mein größtes Geschenk dieses Jahr ist Sarah!", speaker: "Ian zu Sarahs Verwandten" } ], characterFocus: "Ihre Beziehung wird im erweiterten Familienkreis thematisiert und weitgehend akzeptiert. Ian zeigt sich beschützend gegenüber Sarah." },
+                { date: "31. Dezember 1986", id: "tag19861231", title: "Silvester: Das Ende vom Anfang", summary: `Ein intimer Morgen, gefolgt von der Diskussion über Neujahrsvorsätze. Ian erkennt, dass sein wichtigster Vorsatz ist, Sarah glücklich zu machen. Am Nachmittag werden sie von Freunden zu einer Silvesterparty eingeladen, wo ihre Beziehung gefeiert wird. Der Tag endet mit einem privaten Moment um Mitternacht.`, quotes: [ { text: "Das neue Jahr wird unser Jahr, das weiß ich!", speaker: "Sarah" }, { text: "Nie wieder alleine. Danke dir!", speaker: "Ian" } ], characterFocus: "Ihre Beziehung wird im Freundeskreis zelebriert, was ihnen sozialen Rückhalt gibt. Ians Fokus auf Sarahs Glück festigt sich." },
+                { date: "1. Januar 1987", id: "tag19870101", title: "Neujahrsmorgen: Ein neuer Anfang", summary: `Der Tag beginnt mit einem intimen und verspielten Morgen, der von Nadine unterbrochen wird. Später besuchen ihre neuen Freunde sie, und die Gruppe unternimmt einen gemeinsamen Spaziergang. Dieser Tag etabliert ihre neue soziale Dynamik als gefestigter Freundeskreis.`, quotes: [ { text: "Ich hab das mitbekommen!", speaker: "Nadine" }, { text: "Eure Spiele werden immer komischer!", speaker: "Nadine" }, { text: "Kleine Erpresserin!", speaker: "Ian" } ], characterFocus: "Die Beziehung von Ian und Sarah wird durch die Interaktion im neuen Freundeskreis normalisiert und gestärkt." },
+                { date: "18. März 1987", id: "tag19870318", title: "Ians Flucht – Tag 1: Der Entschluss", summary: `Ian wird gezwungen, wieder bei seinen Eltern zu leben. Die Trennung von Sarah ist für ihn unerträglich. Er fasst den Entschluss, zu ihr zurückzulaufen, packt seine Sachen und macht sich heimlich auf den Weg. Er meidet große Straßen und kommt anfangs gut voran, getragen von der Sehnsucht nach Sarah.`, quotes: [ { text: "Ich muss zurück zu ihr.", speaker: "Ian (innerer Monolog)" }, { text: "Ich sehe keine andere Möglichkeit als wegzulaufen.", speaker: "Ian" } ], characterFocus: "Ians Verzweiflung über die Trennung mündet in einem riskanten Entschluss. Seine Liebe zu Sarah treibt ihn an." },
+                { date: "19. März 1987", id: "tag19870319", title: "Ians Flucht – Tag 2: Ankunft und Zusammenbruch", summary: `Ians Reise wird immer beschwerlicher. Kälte, Hunger und Erschöpfung setzen ihm zu. Er verirrt sich, doch Visionen von Sarah geben ihm Kraft. Schließlich erreicht er, völlig entkräftet, Sarahs Haus und bricht zusammen, bevor er sie noch rufen hört.`, quotes: [ { text: "Ian, du schaffst das! Nicht aufgeben!", speaker: "Ian (zu sich selbst)" }, { text: "Hilf mir! Zeig mir den Weg nach Hause!", speaker: "Ian (heiseres Flüstern)" } ], characterFocus: "Ians extremer körperlicher und mentaler Kampf. Sarah bleibt seine stärkste Motivation, auch wenn er sie nur imaginiert." },
+                { date: "20. März 1987", id: "tag19870320", title: "Zurück im Licht – Sarahs Pflege beginnt", summary: `Ian wacht schwach in Sarahs Bett auf. Sarah ist an seiner Seite und beginnt sofort, ihn liebevoll zu pflegen. Es kommt zu einer angespannten Situation mit Ians Mutter, die zu ihm will, doch Sarah und Jana (Sarahs Mutter) schirmen ihn zunächst ab, um seine Genesung nicht zu gefährden.`, quotes: [ { text: "Ian? Wie geht es dir?", speaker: "Sarah (sanft)" }, { text: "Niemand darf zu Ian! Er ist noch zu schwach.", speaker: "Sarah (bestimmt)" } ], characterFocus: "Sarahs entschlossene und fürsorgliche Art tritt deutlich hervor. Ians Verletzlichkeit und Abhängigkeit von ihr sind groß." },
+                { date: "21. März 1987", id: "tag19870321", title: "Genesung und tiefe Gespräche", summary: `Ian erholt sich langsam unter Sarahs Pflege. Sie verbringen viel Zeit miteinander, führen tiefgründige Gespräche über seine Flucht, ihre Ängste und ihre unzertrennliche Verbindung. Ian erklärt, warum er nicht ohne sie sein kann und dass sie seine Familie sind.`, quotes: [ { text: "Glaubst du wirklich, dass ich dich jemals wegschicken würde?", speaker: "Sarah zu Ian" }, { text: "Das wir zusammen sind, macht mich zu einem besseren Menschen...", speaker: "Sarah zu Ian" } ], characterFocus: "Ihre emotionale Intimität vertieft sich weiter. Sie bestärken sich gegenseitig in ihrer Liebe und ihrem Zusammengehörigkeitsgefühl." },
+                { date: "22. März 1987", id: "tag19870322", title: "Der Kompromiss der Familien", summary: `Ians Eltern kommen zu Besuch. Es folgt eine intensive Diskussion über die Zukunft von Ian und Sarah. Die Familien erkennen die Tiefe und Ernsthaftigkeit ihrer Beziehung an. Schließlich wird ein Kompromiss gefunden: Ian und Sarah dürfen abwechselnd einen Monat bei der jeweiligen Familie leben und gemeinsam zur Schule gehen. Ihre Rolle als "kleine Familie" mit Nadine wird ebenfalls anerkannt.`, quotes: [ { text: "Ich brauche Sarah immer bei mir, deswegen bin ich ja hierhergelaufen!", speaker: "Ian" }, { text: "Keine Sorge. Jana und ich haben das schon deutlich gemacht.", speaker: "Thomas (Sarahs Vater)" } ], characterFocus: "Die Familien akzeptieren die unzertrennliche Bindung der Kinder und finden eine pragmatische Lösung. Die besondere Dynamik mit Nadine wird Teil der Vereinbarung." }
+            ];
+            const timelineContainer = document.getElementById('timeline-container');
+            if (timelineContainer) {
+                timelineContainer.innerHTML = ''; // Clear previous content
+                timelineEvents.forEach((event, index) => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+                    const isRightSide = index % 2 === 0;
+
+                    let quotesHTML = '';
+                    if (event.quotes && event.quotes.length > 0) {
+                        quotesHTML = `<div class="mt-4 pt-4 border-t border-slate-700"><h4 class="text-md font-semibold text-slate-300 mb-2">Wichtige Zitate:</h4>${event.quotes.map(quote => `<blockquote class="border-l-4 border-sky-700 italic pl-4 mt-2 text-slate-400"><p>"${quote.text}"</p><cite class="block text-right not-italic text-sm mt-1">- ${quote.speaker}</cite></blockquote>`).join('')}</div>`;
+                    }
+
+                    const contentBlock = `<div class="bg-slate-800/80 backdrop-blur-sm p-6 rounded-lg border border-slate-700 md:transform md:transition-transform md:duration-300 md:hover:scale-105"><p class="text-sm font-semibold text-sky-400 mb-1">${event.date}</p><h3 class="text-2xl font-playfair font-bold text-white mb-3">${event.title}</h3><p class="text-slate-400 leading-relaxed">${event.summary}</p>${quotesHTML}<div class="mt-4 pt-4 border-t border-slate-700"><h4 class="text-md font-semibold text-slate-300 mb-1">Charakterfokus:</h4><p class="text-sm text-slate-500">${event.characterFocus}</p></div></div>`;
+                    timelineItem.innerHTML = `<div class="timeline-dot"></div><div class="md:grid md:grid-cols-2 md:gap-x-12"><div class="md:text-right">${!isRightSide ? contentBlock : ''}</div><div>${isRightSide ? contentBlock : ''}</div></div>`;
+                    if (window.innerWidth < 768) {
+                        timelineItem.querySelector('.md\\:grid').innerHTML = `<div class="ml-12 -mt-1">${contentBlock}</div>`;
+                    }
+
+                    timelineContainer.appendChild(timelineItem);
+                });
+            }
+
+            const slideshowContainer = document.getElementById('cover-slideshow-container');
+            if (slideshowContainer) {
+                // Alle Bilder auswählen, die *nicht* der Platzhalter sind
+                const slides = slideshowContainer.querySelectorAll('.slideshow-image');
+                let currentSlideIndex = 0;
+                
+                // Dauer in Millisekunden
+                const slideDuration = 300000; 
+
+                if (slides.length > 1) {
+                    setInterval(() => {
+                        // Aktuelles Bild ausblenden
+                        slides[currentSlideIndex].classList.remove('active-slide');
+                        
+                        // Nächsten Index berechnen (mit Modulo % für die Schleife)
+                        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                        
+                        // Nächstes Bild einblenden
+                        slides[currentSlideIndex].classList.add('active-slide');
+                    }, slideDuration);
+                }
+            }
+
+            // --- Initialisierungsfunktion ---
+            handleConsent();
+        });
+
+    </script>
+</body>
+</html>
