@@ -1,4 +1,4 @@
-.vscode
-.ddev
-.git
+/.vscode/
+.ddev/
+.git/
 .DS_Store
