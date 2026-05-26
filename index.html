@@ -340,272 +340,23 @@
             --transition-speed: 0.3s;
         }
 
-        /* --- DER FLOATING BUTTON --- */
-        .winter-floating-btn {
-            position: fixed;
-            bottom: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            background-color: var(--orange);
-            color: #0f172a;
-            text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            box-shadow: 0 10px 25px rgba(0, 51, 102, 0.3);
-            transition: all var(--transition-speed) ease;
-            z-index: 50;
-            border: 2px solid var(--ice-blue);
-            display: none;
-            /* Initial ausgeblendet */
-            align-items: center;
-            font-weight: bold;
-            overflow: hidden;
-        }
-
-        /* Icon/Badge-Bereich */
-        .winter-floating-btn i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* Hover-Effekte */
-        .winter-floating-btn:hover {
-            transform: translateX(-50%) translateY(-5px) scale(1.03);
-            background-color: amber;
-            box-shadow: 0 15px 30px rgba(0, 51, 102, 0.4);
-            border-color: white;
-        }
-
-        /* Subtile Animation für Aufmerksamkeit */
-        .winter-floating-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-            pointer-events: none;
-        }
-
-        .winter-floating-btn:hover::after {
-            left: 120%;
-        }
-
-        /* Label-Text Anpassung für Mobile */
-        @media (max-width: 600px) {
-            .winter-floating-btn {
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 18px;
-                font-size: 0.9rem;
-            }
-
-            .btn-text-long {
-                display: none;
-                /* Kürzerer Text auf Handy */
-            }
-
-        }
-
-        /* Prefix "wc-" um Namenskollisionen zu vermeiden */
-        .wc-amazon-orange {
-            color: #ff9900;
-        }
-
-        .wc-winter-blue {
-            color: #003366;
-        }
-
-        /* Die Buch-Hero-Sektion */
-        .wc-book-card {
-            background: white;
-            max-width: 900px;
-            margin: 40px auto;
-            border-radius: 12px;
-            display: flex;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0, 51, 102, 0.1);
-            font-family: sans-serif;
-        }
-
-        .wc-book-cover {
-            background: #003366;
-            padding: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 250px;
-        }
-
-        .wc-book-cover img {
-            width: 100%;
-            max-width: 180px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            border-radius: 3px;
-        }
-
-        .wc-book-details {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .wc-amazon-btn {
+        /* Stil für den Bestellen-Navigationslink */
+        .nav-order-link {
+            color: var(--orange);
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
-            background-color: #ff9900;
-            color: #111;
-            text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: transform 0.2s;
-            align-self: flex-start;
+            transition: color var(--transition-speed) ease;
+        }
+        .nav-order-link:hover {
+            color: var(--amber);
+        }
+        .nav-order-link svg {
+            margin-right: 6px;
+            flex-shrink: 0;
         }
 
-        .wc-amazon-btn:hover {
-            transform: translateY(-2px);
-            background-color: #e68a00;
-        }
 
-        .wc-countdown-container {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #003366;
-            text-align: center;
-            margin-top: 10px;
-            padding: 10px;
-            background: #f0f8ff;
-            border-radius: 10px;
-            max-width: 500px;
-            border: 1px dashed #a5d8ff;
-        }
-
-        .wc-countdown-label {
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .wc-timer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .wc-timer-box {
-            background: #ffffff;
-            padding: 5px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e1f0ff;
-        }
-
-        .wc-timer-value {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #003366;
-        }
-
-        /* --- MODAL STYLES --- */
-        .wc-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            display: none;
-            /* Wird via JS auf 'flex' gesetzt */
-            align-items: center;
-            justify-content: center;
-            z-index: 50;
-            /* Wie gewünscht */
-            padding: 20px;
-        }
-
-        .wc-modal-content {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-        }
-
-        .wc-modal-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2.5rem;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .wc-timer-unit {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: #7f8c8d;
-        }
-
-        /* Wenn die Zeit abgelaufen ist */
-        .wc-released-msg {
-            display: none;
-            font-weight: bold;
-            color: #27ae60;
-            font-size: 1.2rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* MOBILE ANPASSUNG: Cover ausblenden */
-        @media (max-width: 768px) {
-            .wc-book-cover {
-                display: none;
-                /* Das Cover wird auf Mobile versteckt */
-            }
-
-            .wc-book-card {
-                margin: 20px;
-                border-radius: 15px;
-            }
-
-            .wc-book-details {
-                padding: 30px 20px;
-            }
-
-            .wc-amazon-btn {
-                align-self: stretch;
-                justify-content: center;
-            }
-
-            .wc-timer-value {
-                display: block;
-            }
-        }
         @media (min-width: 768px) {
             .md\:items-start {
                 align-items: flex-start !important;
@@ -675,6 +426,13 @@
             <div class="flex justify-center items-center py-3">
                 <nav id="main-nav"
                     class="flex flex-wrap justify-center items-center space-x-4 sm:space-x-6 md:space-x-8 text-sm sm:text-base">
+                    <a href="https://www.amazon.de/dp/B0GX3DLKL3" target="_blank" rel="noopener noreferrer" class="nav-order-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-amazon" viewBox="0 0 16 16">
+                            <path d="M10.813 11.968c.157.083.36.074.5-.05l.005.005a90 90 0 0 1 1.623-1.405c.173-.143.143-.372.006-.563l-.125-.17c-.345-.465-.673-.906-.673-1.791v-3.3l.001-.335c.008-1.265.014-2.421-.933-3.305C10.404.274 9.06 0 8.03 0 6.017 0 3.77.75 3.296 3.24c-.047.264.143.404.316.443l2.054.22c.19-.009.33-.196.366-.387.176-.857.896-1.271 1.703-1.271.435 0 .929.16 1.188.55.264.39.26.91.257 1.376v.432q-.3.033-.621.065c-1.113.114-2.397.246-3.36.67C3.873 5.91 2.94 7.08 2.94 8.798c0 2.2 1.387 3.298 3.168 3.298 1.506 0 2.328-.354 3.489-1.54l.167.246c.274.405.456.675 1.047 1.166ZM6.03 8.431C6.03 6.627 7.647 6.3 9.177 6.3v.57c.001.776.002 1.434-.396 2.133-.336.595-.87.961-1.465.961-.812 0-1.286-.619-1.286-1.533M.435 12.174c2.629 1.603 6.698 4.084 13.183.997.28-.116.475.078.199.431C13.538 13.96 11.312 16 7.57 16 3.832 16 .968 13.446.094 12.386c-.24-.275.036-.4.199-.299z"/>
+                            <path d="M13.828 11.943c.567-.07 1.468-.027 1.645.204.135.176-.004.966-.233 1.533-.23.563-.572.961-.762 1.115s-.333.094-.23-.137c.105-.23.684-1.663.455-1.963-.213-.278-1.177-.177-1.625-.13l-.09.009q-.142.013-.233.024c-.193.021-.245.027-.274-.032-.074-.209.779-.556 1.347-.623"/>
+                        </svg>
+                        <span>Bestellen</span>
+                    </a>
                     <a href="#about" class="hover:text-sky-400 transition-colors duration-300">Buch</a>
                     <a href="#characters" class="hover:text-sky-400 transition-colors duration-300">Charaktere</a>
                     <a href="#review" class="hover:text-sky-400 transition-colors duration-300">Besprechung</a>
@@ -686,66 +444,7 @@
     </div>
 
     <main>
-        <div id="wc-book-modal" class="wc-modal-overlay">
-            <div class="wc-modal-content">
-                <button id="wc-modal-close" class="wc-modal-close" title="Schließen">&times;</button>
-                <section class="wc-book-card">
-                    <div class="wc-book-cover">
-                        <img src="https://m.media-amazon.com/images/I/81yh4+9Ri+L._SY425_.jpg"
-                            alt="Cover: 9 Jahre Himmel">
-                    </div>
-                    <div class="wc-book-details">
-                        <small style="color: #003366; font-weight: bold; text-transform: uppercase;">Band 1 der
-                            Winter-Chroniken</small>
-                        <h2 style="margin: 10px 0; color: #0ea5e9;">9 Jahre Himmel - Die ersten Schritte</h2>
-                        <p style="font-style: italic; color: #666; border-left: 3px solid #a5d8ff; padding-left: 10px;">
-                            "Eine Liebe, die nach keiner Erlaubnis fragt – weil sie einfach ist."
-                        </p>
-                        <p style="font-size: 0.95rem; line-height: 1.5; color: #333; padding-top: 5px;">
-                            Als Ian Sarah zum ersten Mal begegnet, verändert sich etwas in ihm. Sie sieht ihn an und
-                            plötzlich ist die Welt nicht mehr dieselbe...
-                        </p>
-                        <div class="wc-countdown-container" id="wc-release-timer">
-                            <span class="wc-countdown-label">Erscheint in:</span>
 
-                            <div class="wc-timer-grid" id="wc-timer-display">
-                                <div class="wc-timer-box">
-                                    <span class="wc-timer-value" id="wc-days">00</span>
-                                    <span class="wc-timer-unit">Tage</span>
-                                </div>
-                                <div class="wc-timer-box">
-                                    <span class="wc-timer-value" id="wc-hours">00</span>
-                                    <span class="wc-timer-unit">Std</span>
-                                </div>
-                                <div class="wc-timer-box">
-                                    <span class="wc-timer-value" id="wc-mins">00</span>
-                                    <span class="wc-timer-unit">Min</span>
-                                </div>
-                                <div class="wc-timer-box">
-                                    <span class="wc-timer-value" id="wc-secs">00</span>
-                                    <span class="wc-timer-unit">Sek</span>
-                                </div>
-                            </div>
-
-                            <div id="wc-released" class="wc-released-msg">
-                                🎉 JETZT VERFÜGBAR!
-                            </div>
-                        </div>
-                        <a href="https://www.amazon.de/dp/B0GX3DLKL3" target="_blank" class="wc-amazon-btn">
-                            <!-- SVG Icon für das Buch (statt FontAwesome für pure HTML Kompatibilität) -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                class="bi bi-amazon" viewBox="0 0 16 16">
-                                <path
-                                    d="M10.813 11.968c.157.083.36.074.5-.05l.005.005a90 90 0 0 1 1.623-1.405c.173-.143.143-.372.006-.563l-.125-.17c-.345-.465-.673-.906-.673-1.791v-3.3l.001-.335c.008-1.265.014-2.421-.933-3.305C10.404.274 9.06 0 8.03 0 6.017 0 3.77.75 3.296 3.24c-.047.264.143.404.316.443l2.054.22c.19-.009.33-.196.366-.387.176-.857.896-1.271 1.703-1.271.435 0 .929.16 1.188.55.264.39.26.91.257 1.376v.432q-.3.033-.621.065c-1.113.114-2.397.246-3.36.67C3.873 5.91 2.94 7.08 2.94 8.798c0 2.2 1.387 3.298 3.168 3.298 1.506 0 2.328-.354 3.489-1.54l.167.246c.274.405.456.675 1.047 1.166ZM6.03 8.431C6.03 6.627 7.647 6.3 9.177 6.3v.57c.001.776.002 1.434-.396 2.133-.336.595-.87.961-1.465.961-.812 0-1.286-.619-1.286-1.533M.435 12.174c2.629 1.603 6.698 4.084 13.183.997.28-.116.475.078.199.431C13.538 13.96 11.312 16 7.57 16 3.832 16 .968 13.446.094 12.386c-.24-.275.036-.4.199-.299z" />
-                                <path
-                                    d="M13.828 11.943c.567-.07 1.468-.027 1.645.204.135.176-.004.966-.233 1.533-.23.563-.572.961-.762 1.115s-.333.094-.23-.137c.105-.23.684-1.663.455-1.963-.213-.278-1.177-.177-1.625-.13l-.09.009q-.142.013-.233.024c-.193.021-.245.027-.274-.032-.074-.209.779-.556 1.347-.623" />
-                            </svg>
-                            &emsp;Bei Amazon vorbestellen
-                        </a>
-                    </div>
-                </section>
-            </div>
-        </div>
 
         <!-- Section: About the Book -->
         <section id="about" class="flex items-center justify-center py-16">
@@ -1062,57 +761,7 @@
         </div>
     </div>
 
-    <a href="https://www.amazon.de/dp/B0GX3DLKL3" target="_blank" class="winter-floating-btn" id="wc-floating-button"
-        title="Jetzt bei Amazon vorbestellen">
-        <!-- SVG Icon für das Buch (statt FontAwesome für pure HTML Kompatibilität) -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-amazon"
-            viewBox="0 0 16 16">
-            <path
-                d="M10.813 11.968c.157.083.36.074.5-.05l.005.005a90 90 0 0 1 1.623-1.405c.173-.143.143-.372.006-.563l-.125-.17c-.345-.465-.673-.906-.673-1.791v-3.3l.001-.335c.008-1.265.014-2.421-.933-3.305C10.404.274 9.06 0 8.03 0 6.017 0 3.77.75 3.296 3.24c-.047.264.143.404.316.443l2.054.22c.19-.009.33-.196.366-.387.176-.857.896-1.271 1.703-1.271.435 0 .929.16 1.188.55.264.39.26.91.257 1.376v.432q-.3.033-.621.065c-1.113.114-2.397.246-3.36.67C3.873 5.91 2.94 7.08 2.94 8.798c0 2.2 1.387 3.298 3.168 3.298 1.506 0 2.328-.354 3.489-1.54l.167.246c.274.405.456.675 1.047 1.166ZM6.03 8.431C6.03 6.627 7.647 6.3 9.177 6.3v.57c.001.776.002 1.434-.396 2.133-.336.595-.87.961-1.465.961-.812 0-1.286-.619-1.286-1.533M.435 12.174c2.629 1.603 6.698 4.084 13.183.997.28-.116.475.078.199.431C13.538 13.96 11.312 16 7.57 16 3.832 16 .968 13.446.094 12.386c-.24-.275.036-.4.199-.299z" />
-            <path
-                d="M13.828 11.943c.567-.07 1.468-.027 1.645.204.135.176-.004.966-.233 1.533-.23.563-.572.961-.762 1.115s-.333.094-.23-.137c.105-.23.684-1.663.455-1.963-.213-.278-1.177-.177-1.625-.13l-.09.009q-.142.013-.233.024c-.193.021-.245.027-.274-.032-.074-.209.779-.556 1.347-.623" />
-        </svg>
-        <span>
-            <center>&nbsp;Vorbestellen</center><span class="btn-text-long">&emsp;9 Jahre Himmel - Die ersten
-                Schritte</span>
-        </span>
-    </a>
-
     <script>
-
-        (function () {
-            // Ziel-Datum: 28. Mai 2026, 00:00:00 Uhr
-            const targetDate = new Date("May 28, 2026 00:00:00").getTime();
-
-            const updateTimer = () => {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
-
-                if (distance < 0) {
-                    document.getElementById("wc-timer-display").style.display = "none";
-                    document.getElementById("wc-released").style.display = "block";
-                    document.querySelector(".wc-countdown-label").style.display = "none";
-                    return;
-                }
-
-                // Zeitberechnungen
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // Anzeige aktualisieren mit führenden Nullen
-                document.getElementById("wc-days").innerText = days.toString().padStart(2, '0');
-                document.getElementById("wc-hours").innerText = hours.toString().padStart(2, '0');
-                document.getElementById("wc-mins").innerText = minutes.toString().padStart(2, '0');
-                document.getElementById("wc-secs").innerText = seconds.toString().padStart(2, '0');
-            };
-
-            // Sofort starten und dann jede Sekunde
-            updateTimer();
-            setInterval(updateTimer, 1000);
-        })();
-
         document.addEventListener('DOMContentLoaded', () => {
             // --- Globale Variablen ---
             const musicPlayerContainer = document.getElementById('music-player-container');
@@ -1247,41 +896,6 @@
 
             if (toggleButton) {
                 toggleButton.addEventListener('click', togglePlayerVisibility);
-            }
-
-            // --- Modal Steuerung ---
-            const bookModal = document.getElementById('wc-book-modal');
-            const modalClose = document.getElementById('wc-modal-close');
-            const floatingBtn = document.getElementById('wc-floating-button');
-
-            const openModal = () => {
-                bookModal.style.display = 'flex';
-                floatingBtn.style.display = 'none';
-                document.body.style.overflow = 'hidden'; // Scrollen verhindern
-            };
-
-            const closeModal = () => {
-                bookModal.style.display = 'none';
-                floatingBtn.style.display = 'flex';
-                document.body.style.overflow = '';
-            };
-
-            // Beim Laden direkt öffnen
-            openModal();
-
-            if (modalClose) modalClose.addEventListener('click', closeModal);
-            if (floatingBtn) {
-                floatingBtn.addEventListener('click', (e) => {
-                    e.preventDefault(); // Verhindert Amazon Link-Öffnung direkt
-                    openModal();
-                });
-            }
-
-            // Schließen beim Klick auf das Overlay
-            if (bookModal) {
-                bookModal.addEventListener('click', (e) => {
-                    if (e.target === bookModal) closeModal();
-                });
             }
 
             // --- Scroll-Listener für Navigations-Highlight ---
