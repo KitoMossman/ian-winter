@@ -1,4 +1,5 @@
-/.vscode/
+.vscode/
 .ddev/
 .git/
 .DS_Store
+.vscode/sftp.json
